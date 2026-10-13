@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celso Fernández Tuñón — Portafolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            cyan: '#00e6ff',
+                            blue: '#3b82f6',
+                            green: '#10b981',
+                            dark1: '#0a0a0f',
+                            dark2: '#050508',
+                            card: 'rgba(20, 20, 29, 0.7)',
+                            cardHover: 'rgba(28, 28, 42, 0.85)',
+                            border: 'rgba(255, 255, 255, 0.08)',
+                            borderHover: 'rgba(0, 230, 255, 0.35)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: radial-gradient(circle at 50% 0%, #111122 0%, #0a0a0f 50%, #050508 100%);
+            background-attachment: fixed;
+        }
+        .spotlight-card {
+            position: relative;
+            background: rgba(20, 20, 29, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .spotlight-card:hover {
+            border-color: rgba(0, 230, 255, 0.35);
+            background: rgba(28, 28, 42, 0.85);
+            box-shadow: 0 10px 30px -10px rgba(0, 230, 255, 0.12);
+            transform: translateY(-2px);
+        }
+        .tagline {
+            border-left: 2px solid #3b82f6;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 1; }
+        }
+        .animate-pulse-glow {
+            animation: pulse-glow 2s infinite;
+        }
+    </style>
+</head>
+<body class="text-gray-100 font-sans min-h-screen py-12 px-4 flex justify-center antialiased selection:bg-cyan-500 selection:text-black">
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-neutral-900 border border-brand-cyan/40 text-cyan-300 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 transition-all duration-300 transform translate-y-20 opacity-0 pointer-events-none">
+        <svg class="w-5 h-5 text-brand-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+        <span id="toast-message" class="text-sm font-medium">Email copiado al portapapeles</span>
+    </div>
+
+    <div class="w-full max-w-2xl space-y-12">
+        
+        <!-- Header -->
+        <header class="border-b border-brand-border pb-8 space-y-4">
+            
+            <!-- Status Badge -->
+            <div class="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-semibold px-3 py-1 rounded-full">
+                <span class="w-2 h-2 rounded-full bg-brand-green shadow-[0_0_8px_#10b981] animate-pulse-glow"></span>
+                Disponible para prácticas / empleo
+            </div>
+
+            <!-- Main Name -->
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-brand-cyan to-brand-blue bg-clip-text text-transparent">
+                Celso Fernández Tuñón
+            </h1>
+
+            <!-- Location -->
+            <div class="flex items-center gap-1.5 text-gray-400 text-sm">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Oviedo, Asturias
+            </div>
+
+            <!-- Subtitle -->
+            <div class="text-brand-cyan font-semibold text-base">
+                Estudiante de Desarrollo de Aplicaciones Web (DAW)
+            </div>
+
+            <!-- Tagline / Eslogan -->
+            <div class="tagline text-blue-300 italic text-sm pl-3 py-0.5 opacity-90">
+                "Más allá de cómo funciona el código, me interesa entender el porqué."
+            </div>
+
+            <!-- Bio -->
+            <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+                Actualmente cursando el Grado Superior en Desarrollo de Aplicaciones Web (DAW) y realizando las prácticas formativas. Apasionado por la tecnología, destaco por mi proactividad, rápida capacidad de aprendizaje y entusiasmo por incorporarme al entorno laboral para aportar valor en proyectos reales.
+            </p>
+        </header>
+
+        <!-- Dynamic Category Navigation Bar -->
+        <nav class="flex flex-wrap items-center gap-2 border-b border-brand-border pb-4" id="category-filters">
+            <button data-category="all" class="filter-btn active bg-brand-cyan/15 text-brand-cyan border-brand-cyan/40 border text-xs sm:text-sm font-semibold px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5">
+                <span>Todos</span>
+                <span class="bg-cyan-950 text-cyan-300 text-[10px] px-1.5 py-0.5 rounded-full" id="count-all">0</span>
+            </button>
+            <button data-category="skills" class="filter-btn text-gray-400 hover:text-gray-200 border border-brand-border hover:border-gray-600 text-xs sm:text-sm font-medium px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5">
+                <span>Habilidades</span>
+                <span class="bg-neutral-800 text-gray-400 text-[10px] px-1.5 py-0.5 rounded-full" id="count-skills">0</span>
+            </button>
+            <button data-category="experience" class="filter-btn text-gray-400 hover:text-gray-200 border border-brand-border hover:border-gray-600 text-xs sm:text-sm font-medium px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5">
+                <span>Trayectoria</span>
+                <span class="bg-neutral-800 text-gray-400 text-[10px] px-1.5 py-0.5 rounded-full" id="count-experience">0</span>
+            </button>
+            <button data-category="soft" class="filter-btn text-gray-400 hover:text-gray-200 border border-brand-border hover:border-gray-600 text-xs sm:text-sm font-medium px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5">
+                <span>Aptitudes</span>
+                <span class="bg-neutral-800 text-gray-400 text-[10px] px-1.5 py-0.5 rounded-full" id="count-soft">0</span>
+            </button>
+        </nav>
+
+        <!-- Trayectoria Laboral Section -->
+        <section class="section-block space-y-4" data-section="experience">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-gray-400 flex items-center gap-2 after:content-[''] after:flex-1 after:h-[1px] after:bg-brand-border">
+                Trayectoria Laboral
+            </h2>
+
+            <div class="spotlight-card rounded-2xl p-6 space-y-3" data-search-target="hostelero pulperia casa gallega atencion cliente equipos">
+                <div class="flex justify-between items-start flex-wrap gap-2">
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-100">Hostelero</h3>
+                        <div class="text-brand-cyan text-sm font-semibold">Pulpería Casa Gallega</div>
+                    </div>
+                    <span class="text-xs font-medium text-gray-400 bg-neutral-900 border border-brand-border px-2.5 py-1 rounded-md">
+                        Junio 2016 — Agosto 2025
+                    </span>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Experiencia prolongada en atención al cliente, gestión de equipos, resolución rápida de incidencias bajo presión y trabajo coordinado en entornos dinámicos y de alta exigencia.
+                </p>
+            </div>
+        </section>
+
+        <!-- Proyectos Section Placeholder -->
+        <section class="section-block space-y-4" data-section="projects">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-gray-400 flex items-center gap-2 after:content-[''] after:flex-1 after:h-[1px] after:bg-brand-border">
+                Proyectos Destacados
+            </h2>
+            <div class="border-2 border-dashed border-brand-border hover:border-brand-cyan/30 rounded-2xl p-8 text-center bg-white/[0.01] transition-colors">
+                <p class="text-gray-400 text-sm font-medium">🚀 Aquí irán mis futuros proyectos</p>
+            </div>
+        </section>
+
+        <!-- Habilidades Técnicas e Idiomas Section -->
+        <section class="section-block space-y-4" data-section="skills">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-gray-400 flex items-center gap-2 after:content-[''] after:flex-1 after:h-[1px] after:bg-brand-border">
+                Habilidades Técnicas e Idiomas
+            </h2>
+            <div class="flex flex-wrap gap-2.5">
+                <span class="spotlight-card text-sm font-medium text-gray-200 px-3.5 py-1.5 rounded-lg hover:text-brand-cyan cursor-default" data-search-target="java backend">
+                    Java
+                </span>
+                <span class="spotlight-card text-sm font-medium text-gray-200 px-3.5 py-1.5 rounded-lg hover:text-brand-cyan cursor-default" data-search-target="javascript js frontend">
+                    JavaScript
+                </span>
+                <span class="spotlight-card text-sm font-medium text-gray-200 px-3.5 py-1.5 rounded-lg hover:text-brand-cyan cursor-default" data-search-target="html5 html web">
+                    HTML5
+                </span>
+                <span class="spotlight-card text-sm font-medium text-gray-200 px-3.5 py-1.5 rounded-lg hover:text-brand-cyan cursor-default" data-search-target="css3 css estilos">
+                    CSS3
+                </span>
+                <span class="spotlight-card text-sm font-medium text-blue-300 bg-blue-500/10 border-blue-500/30 px-3.5 py-1.5 rounded-lg hover:border-brand-blue cursor-default" data-search-target="ingles english idioma">
+                    🌐 Inglés (Nivel Medio-Alto)
+                </span>
+            </div>
+        </section>
+
+        <!-- Aptitudes Laborales Section -->
+        <section class="section-block space-y-4" data-section="soft">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-gray-400 flex items-center gap-2 after:content-[''] after:flex-1 after:h-[1px] after:bg-brand-border">
+                Aptitudes Laborales
+            </h2>
+            <div class="flex flex-wrap gap-2.5">
+                <span class="spotlight-card text-sm font-medium text-sky-300 bg-cyan-500/5 border-cyan-500/25 px-3.5 py-1.5 rounded-lg hover:border-brand-cyan cursor-default" data-search-target="trabajo en equipo">
+                    Trabajo en Equipo
+                </span>
+                <span class="spotlight-card text-sm font-medium text-sky-300 bg-cyan-500/5 border-cyan-500/25 px-3.5 py-1.5 rounded-lg hover:border-brand-cyan cursor-default" data-search-target="gran capacidad de aprendizaje">
+                    Gran Capacidad de Aprendizaje
+                </span>
+                <span class="spotlight-card text-sm font-medium text-sky-300 bg-cyan-500/5 border-cyan-500/25 px-3.5 py-1.5 rounded-lg hover:border-brand-cyan cursor-default" data-search-target="resolucion de problemas">
+                    Resolución de Problemas
+                </span>
+                <span class="spotlight-card text-sm font-medium text-sky-300 bg-cyan-500/5 border-cyan-500/25 px-3.5 py-1.5 rounded-lg hover:border-brand-cyan cursor-default" data-search-target="adaptabilidad">
+                    Adaptabilidad
+                </span>
+                <span class="spotlight-card text-sm font-medium text-sky-300 bg-cyan-500/5 border-cyan-500/25 px-3.5 py-1.5 rounded-lg hover:border-brand-cyan cursor-default" data-search-target="proactividad">
+                    Proactividad
+                </span>
+                <span class="spotlight-card text-sm font-medium text-sky-300 bg-cyan-500/5 border-cyan-500/25 px-3.5 py-1.5 rounded-lg hover:border-brand-cyan cursor-default" data-search-target="comunicacion eficaz">
+                    Comunicación Eficaz
+                </span>
+            </div>
+        </section>
+
+        <!-- Contáctame Section -->
+        <section class="space-y-4">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-gray-400 flex items-center gap-2 after:content-[''] after:flex-1 after:h-[1px] after:bg-brand-border">
+                Contáctame
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                
+                <!-- Email with Auto-Copy -->
+                <button id="copy-email-btn" data-email="Celsofernandez6@gmail.com" class="spotlight-card p-5 rounded-xl flex flex-col items-center justify-center gap-2 text-center text-gray-200 hover:text-brand-cyan transition-all group">
+                    <svg class="w-6 h-6 fill-brand-cyan group-hover:scale-110 transition-transform" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <span class="text-xs font-medium">Email</span>
+                    <span class="text-[10px] text-gray-500 group-hover:text-cyan-400/80">Haz clic para copiar</span>
+                </button>
+
+                <!-- GitHub Link -->
+                <a href="https://github.com/celsofernandez6" target="_blank" class="spotlight-card p-5 rounded-xl flex flex-col items-center justify-center gap-2 text-center text-gray-200 hover:text-brand-cyan transition-all group">
+                    <svg class="w-6 h-6 fill-brand-cyan group-hover:scale-110 transition-transform" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    <span class="text-xs font-medium">GitHub</span>
+                    <span class="text-[10px] text-gray-500 group-hover:text-cyan-400/80">Abrir perfil</span>
+                </a>
+
+                <!-- LinkedIn Link -->
+                <a href="https://www.linkedin.com/in/celso-fern%C3%A1ndez-tu%C3%B1%C3%B3n-17971643a" target="_blank" class="spotlight-card p-5 rounded-xl flex flex-col items-center justify-center gap-2 text-center text-gray-200 hover:text-brand-cyan transition-all group">
+                    <svg class="w-6 h-6 fill-brand-cyan group-hover:scale-110 transition-transform" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.72a1.63 1.63 0 1 0 0 3.26 1.63 1.63 0 0 0 0-3.26z"/></svg>
+                    <span class="text-xs font-medium">LinkedIn</span>
+                    <span class="text-[10px] text-gray-500 group-hover:text-cyan-400/80">Conectar</span>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-gray-500 text-xs border-t border-brand-border pt-8 pb-4">
+            <p>&copy; 2026 Celso Fernández Tuñón · Portafolio Interactivo</p>
+        </footer>
+
+    </div>
+
+    <!-- JavaScript logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const sections = document.querySelectorAll('.section-block');
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            const copyEmailBtn = document.getElementById('copy-email-btn');
+
+            let currentCategory = 'all';
+
+            // Calculate and update badge counts
+            function updateCounts() {
+                const skillsCount = document.querySelectorAll('[data-section="skills"] [data-search-target]').length;
+                const expCount = document.querySelectorAll('[data-section="experience"] [data-search-target]').length;
+                const softCount = document.querySelectorAll('[data-section="soft"] [data-search-target]').length;
+
+                document.getElementById('count-skills').textContent = skillsCount;
+                document.getElementById('count-experience').textContent = expCount;
+                document.getElementById('count-soft').textContent = softCount;
+                document.getElementById('count-all').textContent = skillsCount + expCount + softCount;
+            }
+
+            // Filter functionality
+            function applyFilters() {
+                sections.forEach(section => {
+                    const secCat = section.getAttribute('data-section');
+                    if (currentCategory === 'all' || currentCategory === secCat) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            }
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => {
+                        b.classList.remove('active', 'bg-brand-cyan/15', 'text-brand-cyan', 'border-brand-cyan/40');
+                        b.classList.add('text-gray-400', 'border-brand-border');
+                    });
+                    btn.classList.add('active', 'bg-brand-cyan/15', 'text-brand-cyan', 'border-brand-cyan/40');
+                    btn.classList.remove('text-gray-400', 'border-brand-border');
+
+                    currentCategory = btn.getAttribute('data-category');
+                    applyFilters();
+                });
+            });
+
+            // Toast helper
+            function showToast(msg) {
+                toastMessage.textContent = msg;
+                toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+                toast.classList.add('translate-y-0', 'opacity-100');
+
+                setTimeout(() => {
+                    toast.classList.remove('translate-y-0', 'opacity-100');
+                    toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+                }, 2500);
+            }
+
+            // Email Copy Logic
+            copyEmailBtn.addEventListener('click', () => {
+                const email = copyEmailBtn.getAttribute('data-email');
+                navigator.clipboard.writeText(email).then(() => {
+                    showToast('Email copiado al portapapeles');
+                }).catch(() => {
+                    showToast('Celsofernandez6@gmail.com');
+                });
+            });
+
+            // Initialize counts and layout
+            updateCounts();
+            applyFilters();
+        });
+    </script>
+</body>
+</html>
